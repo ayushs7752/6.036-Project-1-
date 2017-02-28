@@ -422,6 +422,13 @@ def bag_of_words(texts):
         for word in word_list:
             if word not in dictionary and word not in stopwords: 
                 dictionary[word] = len(dictionary)
+    
+    # for text in texts:
+    #     word_list = extract_words(text)
+    #     for i in range(int(len(word_list)/)):
+    #         i_bigram = word_list[i] + " " + word_list[i+1]
+    #         if i_bigram not in dictionary:
+    #             dictionary[i_bigram] = len(dictionary)
 
 
     return dictionary
@@ -462,7 +469,11 @@ def extract_bow_feature_vectors(reviews, dictionary):
         word_list = extract_words(text)
         for word in word_list:
             if word in dictionary:
-                feature_matrix[i, dictionary[word]] = 1
+                #modified to +=1 from =1 to include TF and weighing numbers + punctuation higher
+                feature_matrix[i, dictionary[word]] +=1 
+                if word in [",", ".", ] or word.isdigit():
+                    feature_matrix[i, dictionary[word]] +=1
+
     return feature_matrix
 
 def extract_additional_features(reviews):
@@ -470,7 +481,7 @@ def extract_additional_features(reviews):
     Section 3.12
     Inputs a list of string reviews
     Returns a feature matrix of (n,m), where n is the number of reviews
-    and m is the total number of additional features of your choice
+    and m is the total number of additional features of your choice 
 
     YOU MAY CHANGE THE PARAMETERS
     """

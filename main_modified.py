@@ -14,7 +14,7 @@ val_texts, val_labels = zip(*((sample['text'], sample['sentiment']) for sample i
 test_texts, test_labels = zip(*((sample['text'], sample['sentiment']) for sample in test_data))
 
 dictionary = p1.bag_of_words(train_texts)
-print (len(train_texts), len(dictionary), "lengths")
+# print (len(train_texts), len(dictionary), "lengths")
 train_bow_features = p1.extract_bow_feature_vectors(train_texts, dictionary)
 
 val_bow_features = p1.extract_bow_feature_vectors(val_texts, dictionary)
