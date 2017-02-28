@@ -97,9 +97,9 @@ test_bow_features = p1.extract_bow_feature_vectors(test_texts, dictionary)
 # The test data has been provided as test_bow_features and test_labels.
 #-------------------------------------------------------------------------------
 
-best_T_case = 50
+# best_T_case = 50
 
-print (p1.average_perceptron_accuracy(train_bow_features,test_bow_features, train_labels, test_labels, best_T_case))
+# print (p1.average_perceptron_accuracy(train_bow_features,test_bow_features, train_labels, test_labels, best_T_case))
 
 
 
@@ -140,17 +140,18 @@ print (p1.average_perceptron_accuracy(train_bow_features,test_bow_features, trai
 # Modify the code below to extract your best features from the submission data
 # and then classify it using your most accurate classifier.
 #-------------------------------------------------------------------------------
-# submit_texts = [sample['text'] for sample in utils.load_data('reviews_submit.tsv')]
+submit_texts = [sample['text'] for sample in utils.load_data('reviews_submit.tsv')]
 #
 # # 1. Extract your preferred features from the train and submit data
-# dictionary = p1.bag_of_words(submit_texts)
-# train_final_features = p1.extract_final_features(train_texts, dictionary)
-# submit_final_features = p1.extract_final_features(submit_texts, dictionary)
+dictionary = p1.bag_of_words(submit_texts)
+train_final_features = p1.extract_final_features(train_texts, dictionary)
+submit_final_features = p1.extract_final_features(submit_texts, dictionary)
 #
 # # 2. Train your most accurate classifier
-# final_thetas = p1.perceptron(train_final_features, train_labels, T=1)
+final_thetas = p1.average_perceptron(train_final_features, train_labels, T=50)
 #
 # # 3. Classify and write out the submit predictions.
-# submit_predictions = p1.classify(submit_final_features, *final_thetas)
-# utils.write_predictions('reviews_submit.tsv', submit_predictions)
+submit_predictions = p1.classify(submit_final_features, *final_thetas)
+utils.write_predictions('reviews_submit.tsv', submit_predictions)
+
 #-------------------------------------------------------------------------------
