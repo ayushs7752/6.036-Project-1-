@@ -4,7 +4,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import random
 import math
-
+import copy
 
 ### Part I
 
@@ -43,7 +43,7 @@ def hinge_loss(feature_matrix, labels, theta, theta_0):
     # raise NotImplementedError
 
 
-
+print ("this is being imported and run")
 
 def perceptron_single_step_update(feature_vector, label, current_theta, current_theta_0):
     """
@@ -65,12 +65,12 @@ def perceptron_single_step_update(feature_vector, label, current_theta, current_
     completed.
     """
     # raise NotImplementedError
-    normalized_feature_vector = normalize_vector(feature_vector)
-    value = label*(np.dot(current_theta,normalized_feature_vector) + current_theta_0)
+    # normalized_feature_vector = normalize_vector(featu    re_vector)
+    value = label*(np.dot(current_theta,feature_vector) + current_theta_0)
     # print (type(current_theta), type(feature_vector), type(current_theta_0))
     # print (type(value), "PRINTING")
     if value <=0:
-        next_theta = current_theta + label*normalized_feature_vector
+        next_theta = current_theta + label*feature_vector
         next_theta_0 = current_theta_0 + label
         return (next_theta, next_theta_0)
 
@@ -413,14 +413,36 @@ def bag_of_words(texts):
 
     Feel free to change this code as guided by Section 3 (e.g. remove stopwords, add bigrams etc.)
     """
+    f = open("stopwords.txt","r")
+    stopwords = extract_words(f.read())
+
     dictionary = {} # maps word to unique index
     for text in texts:
         word_list = extract_words(text)
         for word in word_list:
-            if word not in dictionary:
+            if word not in dictionary and word not in stopwords: 
                 dictionary[word] = len(dictionary)
+
+
     return dictionary
 
+# def remove_stop_words(dictionary):
+
+#     """
+#     remove stopwords from unigram dictionary
+#     and return the modified dictionary
+#     """
+#     f = open("stopwords.txt", "r")
+
+#     copy_dictionary = copy.deepcopy(dictionary)
+#     stop_words = extract_words(f.read())
+#     for word in dictionary:
+#         if word in stop_words:
+#             del copy_dictionary[word]    
+#     return copy_dictionary
+    
+
+# print (remove_stop_words({}))
 
 
 
@@ -436,7 +458,7 @@ def extract_bow_feature_vectors(reviews, dictionary):
     num_reviews = len(reviews)
     feature_matrix = np.zeros([num_reviews, len(dictionary)])
 
-    for i, text in enumerate(reviews):
+    for i, text in enumerate(reviews):  
         word_list = extract_words(text)
         for word in word_list:
             if word in dictionary:

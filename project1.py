@@ -65,12 +65,12 @@ def perceptron_single_step_update(feature_vector, label, current_theta, current_
     completed.
     """
     # raise NotImplementedError
-    normalized_feature_vector = normalize_vector(feature_vector)
-    value = label*(np.dot(current_theta,normalized_feature_vector) + current_theta_0)
+    # normalized_feature_vector = normalize_vector(feature_vector)
+    value = label*(np.dot(current_theta,feature_vector) + current_theta_0)
     # print (type(current_theta), type(feature_vector), type(current_theta_0))
     # print (type(value), "PRINTING")
     if value <=0:
-        next_theta = current_theta + label*normalized_feature_vector
+        next_theta = current_theta + label*feature_vector
         next_theta_0 = current_theta_0 + label
         return (next_theta, next_theta_0)
 

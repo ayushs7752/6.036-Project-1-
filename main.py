@@ -43,49 +43,49 @@ test_bow_features = p1.extract_bow_feature_vectors(test_texts, dictionary)
 #-------------------------------------------------------------------------------
 # Section 2.9.b
 #-------------------------------------------------------------------------------
-T = 10
-L = 0.01
+# T = 10
+# L = 0.01
 
-pct_train_accuracy, pct_val_accuracy = \
-   p1.perceptron_accuracy(train_bow_features,val_bow_features,train_labels,val_labels,T=T)
-print("{:35} {:.4f}".format("Training accuracy for perceptron:", pct_train_accuracy))
-print("{:35} {:.4f}".format("Validation accuracy for perceptron:", pct_val_accuracy))
+# pct_train_accuracy, pct_val_accuracy = \
+#    p1.perceptron_accuracy(train_bow_features,val_bow_features,train_labels,val_labels,T=T)
+# print("{:35} {:.4f}".format("Training accuracy for perceptron:", pct_train_accuracy))
+# print("{:35} {:.4f}".format("Validation accuracy for perceptron:", pct_val_accuracy))
 
-avg_pct_train_accuracy, avg_pct_val_accuracy = \
-   p1.average_perceptron_accuracy(train_bow_features,val_bow_features,train_labels,val_labels,T=T)
-print("{:43} {:.4f}".format("Training accuracy for average perceptron:", avg_pct_train_accuracy))
-print("{:43} {:.4f}".format("Validation accuracy for average perceptron:", avg_pct_val_accuracy))
+# avg_pct_train_accuracy, avg_pct_val_accuracy = \
+#    p1.average_perceptron_accuracy(train_bow_features,val_bow_features,train_labels,val_labels,T=T)
+# print("{:43} {:.4f}".format("Training accuracy for average perceptron:", avg_pct_train_accuracy))
+# print("{:43} {:.4f}".format("Validation accuracy for average perceptron:", avg_pct_val_accuracy))
 
-avg_peg_train_accuracy, avg_peg_val_accuracy = \
-   p1.pegasos_accuracy(train_bow_features,val_bow_features,train_labels,val_labels,T=T,L=L)
-print("{:50} {:.4f}".format("Training accuracy for Pegasos:", avg_peg_train_accuracy))
-print("{:50} {:.4f}".format("Validation accuracy for Pegasos:", avg_peg_val_accuracy))
+# avg_peg_train_accuracy, avg_peg_val_accuracy = \
+#    p1.pegasos_accuracy(train_bow_features,val_bow_features,train_labels,val_labels,T=T,L=L)
+# print("{:50} {:.4f}".format("Training accuracy for Pegasos:", avg_peg_train_accuracy))
+# print("{:50} {:.4f}".format("Validation accuracy for Pegasos:", avg_peg_val_accuracy))
 ##-------------------------------------------------------------------------------
 #
 #
 #-------------------------------------------------------------------------------
 # Section 2.10
 #-------------------------------------------------------------------------------
-data = (train_bow_features, train_labels, val_bow_features, val_labels)
+# data = (train_bow_features, train_labels, val_bow_features, val_labels)
 
-# # values of T and lambda to try
-Ts = [1,5,10,15,25,50,100]
-Ls = [0.01,0.1,0.2,0.5,0.9,1]
+# # # values of T and lambda to try
+# Ts = [1,5,10,15,25,50,100]
+# Ls = [0.01,0.1,0.2,0.5,0.9,1]
 
-pct_tune_results = utils.tune_perceptron(Ts, *data)
-avg_pct_tune_results = utils.tune_avg_perceptron(Ts, *data)
+# pct_tune_results = utils.tune_perceptron(Ts, *data)
+# avg_pct_tune_results = utils.tune_avg_perceptron(Ts, *data)
 
-# fix values for L and T while tuning Pegasos T and L, respective
-best_L = 0.01
-best_T = 50
+# # fix values for L and T while tuning Pegasos T and L, respective
+# best_L = 0.01
+# best_T = 50
 
-avg_peg_tune_results_T = utils.tune_pegasos_T(best_L, Ts, *data)
-avg_peg_tune_results_L = utils.tune_pegasos_L(best_T, Ls, *data)
+# avg_peg_tune_results_T = utils.tune_pegasos_T(best_L, Ts, *data)
+# avg_peg_tune_results_L = utils.tune_pegasos_L(best_T, Ls, *data)
 
-utils.plot_tune_results('Perceptron', 'T', Ts, *pct_tune_results)
-utils.plot_tune_results('Avg Perceptron', 'T', Ts, *avg_pct_tune_results)
-utils.plot_tune_results('Pegasos', 'T', Ts, *avg_peg_tune_results_T)
-utils.plot_tune_results('Pegasos', 'L', Ls, *avg_peg_tune_results_L)
+# utils.plot_tune_results('Perceptron', 'T', Ts, *pct_tune_results)
+# utils.plot_tune_results('Avg Perceptron', 'T', Ts, *avg_pct_tune_results)
+# utils.plot_tune_results('Pegasos', 'T', Ts, *avg_peg_tune_results_T)
+# utils.plot_tune_results('Pegasos', 'L', Ls, *avg_peg_tune_results_L)
 #-------------------------------------------------------------------------------
 #
 #-------------------------------------------------------------------------------
@@ -96,9 +96,9 @@ utils.plot_tune_results('Pegasos', 'L', Ls, *avg_peg_tune_results_L)
 # The test data has been provided as test_bow_features and test_labels.
 #-------------------------------------------------------------------------------
 
-# best_T_case = 50
+best_T_case = 50
 
-# print (p1.average_perceptron_accuracy(train_bow_features,test_bow_features, train_labels, test_labels, best_T_case))
+print (p1.average_perceptron_accuracy(train_bow_features,test_bow_features, train_labels, test_labels, best_T_case))
 
 
 
