@@ -96,10 +96,9 @@ test_bow_features = p1.extract_bow_feature_vectors(test_texts, dictionary)
 # the hyperparameter and accuracy of your best classifier on the test data.
 # The test data has been provided as test_bow_features and test_labels.
 #-------------------------------------------------------------------------------
+best_T_case = 15
 
-# best_T_case = 50
-
-# print (p1.average_perceptron_accuracy(train_bow_features,test_bow_features, train_labels, test_labels, best_T_case))
+print (p1.average_perceptron_accuracy(train_bow_features,test_bow_features, train_labels, test_labels, best_T_case))
 
 
 

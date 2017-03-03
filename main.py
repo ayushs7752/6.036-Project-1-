@@ -18,10 +18,10 @@ dictionary = p1.bag_of_words(train_texts)
 train_bow_features = p1.extract_bow_feature_vectors(train_texts, dictionary)
 val_bow_features = p1.extract_bow_feature_vectors(val_texts, dictionary)
 test_bow_features = p1.extract_bow_feature_vectors(test_texts, dictionary)
-#
-#-------------------------------------------------------------------------------
-# Section 1.7
-# -------------------------------------------------------------------------------
+# #
+# #-------------------------------------------------------------------------------
+# # Section 1.7
+# # -------------------------------------------------------------------------------
 # toy_features, toy_labels = toy_data = utils.load_toy_data('toy_data.tsv')
 
 # T = 10
@@ -42,7 +42,7 @@ test_bow_features = p1.extract_bow_feature_vectors(test_texts, dictionary)
 #
 #-------------------------------------------------------------------------------
 # Section 2.9.b
-#-------------------------------------------------------------------------------
+# -------------------------------------------------------------------------------
 # T = 10
 # L = 0.01
 
@@ -87,7 +87,7 @@ test_bow_features = p1.extract_bow_feature_vectors(test_texts, dictionary)
 # utils.plot_tune_results('Pegasos', 'T', Ts, *avg_peg_tune_results_T)
 # utils.plot_tune_results('Pegasos', 'L', Ls, *avg_peg_tune_results_L)
 #-------------------------------------------------------------------------------
-#
+#   
 #-------------------------------------------------------------------------------
 # Section 2.11a
 #
@@ -96,7 +96,7 @@ test_bow_features = p1.extract_bow_feature_vectors(test_texts, dictionary)
 # The test data has been provided as test_bow_features and test_labels.
 #-------------------------------------------------------------------------------
 
-best_T_case = 50
+best_T_case = 15
 
 print (p1.average_perceptron_accuracy(train_bow_features,test_bow_features, train_labels, test_labels, best_T_case))
 
